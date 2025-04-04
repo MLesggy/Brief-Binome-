@@ -35,7 +35,7 @@ public function getId(): int
     }
 
 //setter 
-public function setId(int $id): void
+public function setId( $id): void
     {
         $this->id =$id;
     }

@@ -3,7 +3,7 @@
 
 <h2 class="mb-4">⊕ Ajouter une nouvelle commande</h2>
 
-<form action="?action=store" method="POST">
+<form action="?action=storeC" method="POST">
     <div>
         <label for="title">Titre :</label>
         <input type="text" id="title" name="title" required>

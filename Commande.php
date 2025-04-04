@@ -5,7 +5,7 @@ class Commande{
     private int $idCommande; 
     private string $statut;
     private string $titre;
-
+    private int $client_id;
     //constructeur
 
     public function __construct(string $statut = "", string $titre = "") {
@@ -27,8 +27,11 @@ public function getIdCommande(): int
     {
         return $this->titre;
     }
+    public function getClientID(){
+        return $this->client_id;
+    }
 // setter
-public function setIdcommande(int $idCommande): void
+public function setIdCommande( $idCommande): void
     {
         $this->idCommande = $idCommande;
     }
@@ -39,5 +42,8 @@ public function setIdcommande(int $idCommande): void
     public function setTitre(string $titre): void
     {
         $this->titre=htmlspecialchars($titre);
+    }
+    public function setClientId($client_id){
+        $this->client_id=$client_id;
     }
 }

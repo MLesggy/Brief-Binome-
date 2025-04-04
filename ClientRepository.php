@@ -54,30 +54,33 @@ $client=new Client();
 // Debut du CRUD client 
 // Creer une commande 
 
-public function passerCommande(Commande $commande): bool 
+public function Create(Client $client): bool 
 {
-    $statement= $this->connexion->getConnection()->prepare('INSERT INTO commande (statut) VALUES (:statut)');
+    $statement= $this->connexion->getConnection()->prepare('INSERT INTO client (nom, email, numero) VALUES (:nom, :email, :numero)');
     return $statement->execute([
-        'statut'=>$commande->getStatut()
+        'nom'=>$client->getNom(),
+        'email'=>$client->getEmail(),
+        'numero'=>$client->getNumero()
     ]);
 }
 
 // fonction pour modifier la commmande 
-public function modifierCommande(Commande $commande): bool
+public function update(Client $client): bool
 {
-    $statement= $this->connexion->getConnection()->prepare('UPDATE commande SET statut=:statut WHERE idCommande=:idCommande');
+    $statement= $this->connexion->getConnection()->prepare('UPDATE client SET nom=:nom, email=:email, numero=:numero WHERE id=:id');
     return $statement->execute([
-        'idCommande'=>$commande->getIdCommande(),
-        'statut'=>$commande->getStatut()
+        'id'=>$client->getId(),
+        'nom'=>$client->getNom(),
+        'email'=>$client->getEmail(),
+        'numero'=>$client->getNumero()
     ]);
 }
 
 //fonction pour supprimer la commande 
-public function supprimer(int $idCommande) : bool 
+public function delete($id) : bool 
 {
-    $statement= $this->connexion->getConnection()->prepare('DELETE FROM commande WHERE idCommande=:idCommande');
-    $statement->bindParam(':idCommande', $idCommande);
+    $statement= $this->connexion->getConnection()->prepare('DELETE FROM client WHERE id=:id');
+    $statement->bindParam(':id', $id);
     return $statement->execute();
 }
-
 }
